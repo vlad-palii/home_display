@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { GoogleMap, Marker, withGoogleMap, withScriptjs } from "react-google-maps"
+import React, { useState, useEffect } from 'react'
+import { GoogleMap, Marker, withGoogleMap, withScriptjs, TrafficLayer, DirectionsRenderer} from "react-google-maps"
 import UserLocation from './UserLocation'
-
 
 const MapWithAMarker = withScriptjs(withGoogleMap(props =>
   <GoogleMap
-    defaultZoom={17}
+    defaultZoom={12}
     defaultCenter={props.defaultCenter.coords}>
-    <Marker
-      position={props.defaultCenter.coords}
-    />
+    <Marker position={props.defaultCenter.coords}/>
+    <TrafficLayer autoUpdate />
   </GoogleMap>
   
-));
+)
+
+);
 
 export default function MyMap  () {
 
   const [coords, setCoords] = useState(null);
+  const [rawCoords, setRawCoords] = useState(null);
 
   useEffect(() => {
 
@@ -29,9 +30,9 @@ export default function MyMap  () {
         lat: latitude,
         lng: longitude
       }
+      let compiledRawCoords = [latitude, longitude];
 
-      console.log(compiledCoords)
-
+      setRawCoords(compiledRawCoords)
       setCoords(compiledCoords)
     }
 

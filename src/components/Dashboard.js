@@ -21,24 +21,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import red from '@material-ui/core/colors/red';
 import MyMap from './Map'
 
-// import { mainListItems, secondaryListItems } from './listItems';
-// import Chart from './Chart';
-// import Deposits from './Deposits';
-// import Orders from './Orders';
-
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -126,59 +108,39 @@ export default function Dashboard() {
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-
-      <AppBar position="absolute" className={clsx(classes.appBar)}>
-
-        <Toolbar className={classes.toolbar} color="primary">
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
-          </Typography>
-        </Toolbar>
-
-      </AppBar>
-
       <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
+        
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={4}>
+          <Grid container spacing={0} >
 
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
+          <Grid item xs={12} md={12} lg={12} >
+              <Paper>
+                weather 
+                weather 
+                weather 
+                weather 
+                time
+              </Paper>
+            </Grid>
 
+            <Grid item xs={12} md={12} lg={12} >
+              <Paper>
                 <MyMap ></MyMap>
-                
               </Paper>
             </Grid>
 
-            <Grid item xs={12} md={4} lg={3}>
+            <Grid item xs={4} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
 
               </Paper>
             </Grid>
 
 
-            <Grid item xs={12} md={4} lg={3}>
+            <Grid item xs={8} md={5} lg={3}>
               <Paper className={fixedHeightPaper}>
 
               </Paper>

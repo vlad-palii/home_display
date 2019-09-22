@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.4.2",
     "@material-ui/icons": "^4.4.1",
+    "babel-loader": "^8.0.6",
     "install": "^0.13.0",
     "npm": "^6.11.3",
     "react": "^16.9.0",
