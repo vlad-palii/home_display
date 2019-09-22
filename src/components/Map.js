@@ -41,7 +41,7 @@ export default function MyMap  () {
 
   return (
     <MapWithAMarker
-    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBHkjLEbmzQZzhRjIXTrX1gGOJDyABqG4"
+    googleMapURL="https://maps.googleapis.com/maps/api/js?key="
     loadingElement={<div style={{ height: `100%` }} />}
     containerElement={<div style={{ height: `400px` }} />}
     mapElement={<div style={{ height: `100%` }} />}
