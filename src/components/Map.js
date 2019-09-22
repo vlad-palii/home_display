@@ -5,9 +5,13 @@ import UserLocation from './UserLocation'
 
 const MapWithAMarker = withScriptjs(withGoogleMap(props =>
   <GoogleMap
-    defaultZoom={8}
+    defaultZoom={17}
     defaultCenter={props.defaultCenter.coords}>
+    <Marker
+      position={props.defaultCenter.coords}
+    />
   </GoogleMap>
+  
 ));
 
 export default function MyMap  () {
@@ -22,8 +26,8 @@ export default function MyMap  () {
       const { coords } = await UserLocation();
       let { latitude, longitude } = coords;
       let compiledCoords = {
-        lat: parseInt(latitude.toFixed(3)),
-        lng: parseInt(longitude.toFixed(3))
+        lat: latitude,
+        lng: longitude
       }
 
       console.log(compiledCoords)
