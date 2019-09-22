@@ -1,47 +1,52 @@
-import React, { Component } from 'react';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import React, { useState, useEffect } from 'react';
+import { GoogleMap, Marker, withGoogleMap, withScriptjs } from "react-google-maps"
+import UserLocation from './UserLocation'
 
-const mapStyles = {
-  width: '300px',
-  height: '300px'
-};
 
-export class MyMap extends Component {
+const MapWithAMarker = withScriptjs(withGoogleMap(props =>
+  <GoogleMap
+    defaultZoom={8}
+    defaultCenter={props.defaultCenter.coords}>
+  </GoogleMap>
+));
 
-  constructor(props) {
-    super(props);
-    this.name = "oloolol"
+export default function MyMap  () {
+
+  const [coords, setCoords] = useState(null);
+
+  useEffect(() => {
+
+    console.log("start use effect")
+
+    async function fetchData() {
+      const { coords } = await UserLocation();
+      let { latitude, longitude } = coords;
+      let compiledCoords = {
+        lat: parseInt(latitude.toFixed(3)),
+        lng: parseInt(longitude.toFixed(3))
+      }
+
+      console.log(compiledCoords)
+
+      setCoords(compiledCoords)
+    }
+
+    fetchData();
+
+  }, [])
+
+  if (coords === null) {
+    return 'Loading...';
   }
 
-  componentDidMount (){
+  return (
+    <MapWithAMarker
+    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBHkjLEbmzQZzhRjIXTrX1gGOJDyABqG4"
+    loadingElement={<div style={{ height: `100%` }} />}
+    containerElement={<div style={{ height: `400px` }} />}
+    mapElement={<div style={{ height: `100%` }} />}
+    defaultCenter={{coords}}
+  /> 
+  )
 
-  }
-
-  render() {
-    return (
-        <div>
-              <Map
-                google={this.props.google}
-                zoom={12}
-                style={mapStyles}
-                initialCenter={{
-                lat: 50.45,
-                lng: 30.52
-                }}
-              >
-                <Marker onClick={this.onMarkerClick}
-                  name={'Current location'} />
-                <InfoWindow onClose={this.onInfoWindowClose}>
-                    {/* <div>
-                      <h1>{this.state.selectedPlace.name}</h1>
-                    </div> */}
-                </InfoWindow>
-              </Map>
-        </div>
-    );
-  }
 }
-
-export default GoogleApiWrapper({
-  apiKey: ''
-})(MyMap);
